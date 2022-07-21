@@ -1,15 +1,15 @@
 
-let baseUrl = "https://manjeerin.github.io/nca.github.io";
-let localUrl = "http://localhost/test"
-
-function getCollectionsById(collectionId) {
+let baseUrl = "https://manjeerin.github.io/nca.github.io"; // production Url
+let localUrl = "http://localhost/test" // local Url
+// get all news by collection Id
+function getNewsByCollectionId(collectionId) {
     fetch(baseUrl+"/api/collection.json")
       .then((response) => response.json())
       .then((json) => 
         filterNews(collectionId,json)
       );
   }
-
+// filter the news whose collection id is passed only
   function filterNews(collectionId,newsList) {
    let filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId})  
    // add these news to html
@@ -22,6 +22,7 @@ function getCollectionsById(collectionId) {
     let otherArticleHTML = document.getElementById('other-article');
     filteredList.forEach(news => {
     if(news.type == "exclusive"){
+        // append news that are exclusive
         exclusiveArticles += `<article>
         <img src="images/${news.Imageurl}" class = "w-100" alt="${news.Title}">
         <h4>
@@ -37,6 +38,7 @@ function getCollectionsById(collectionId) {
         </p>
         </article>`
     } else if(news.type == "main") {
+        // append news that are main
         mainArticles += ` <img src="images/Greg_Inglis_Australia.jpg" class = "w-100" alt="Image">
             <h3>
             ${logoImage}
@@ -49,6 +51,7 @@ function getCollectionsById(collectionId) {
                 </p>
             </p> `
     }else{
+        // append other news
         otherArticles += `
         <div class="row">
             <div class="col-md-8 col-sm-12">
@@ -75,4 +78,4 @@ function getCollectionsById(collectionId) {
    otherArticleHTML.innerHTML = otherArticles
   }
   
-  getCollectionsById(2);
+  getNewsByCollectionId(2);
