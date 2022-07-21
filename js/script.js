@@ -1,5 +1,6 @@
 function getCollectionsById(collectionId) {
-    fetch("http://localhost/test/api/collection.json")
+    // fetch("http://localhost/test/api/collection.json")
+    fetch("https://manjeerin.github.io/nca.github.io/api/collection.json")
       .then((response) => response.json())
       .then((json) => 
         filterNews(collectionId,json)
