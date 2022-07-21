@@ -1,6 +1,9 @@
+
+let baseUrl = "https://manjeerin.github.io/nca.github.io";
+let localUrl = "http://localhost/test"
+
 function getCollectionsById(collectionId) {
-    // fetch("http://localhost/test/api/collection.json")
-    fetch("https://manjeerin.github.io/nca.github.io/api/collection.json")
+    fetch(baseUrl+"/api/collection.json")
       .then((response) => response.json())
       .then((json) => 
         filterNews(collectionId,json)
