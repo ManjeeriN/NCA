@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+}
+.grow {
+    flex: 1;
+}
+
+.main {
+    /* overflow-y: auto; */
+    padding: 25px;
+}
+h3,h4{
+    color: #000000;
+    font-weight: bolder;
+}
+h5{
+    font-weight: bold;
+    color: #828281;
+}
+p {
+    color: #000;
+}
+.sidebar {
+    border-left: 1px solid #828281;
+}
+
+.article-time {
+    border-bottom: 2px solid #ececec;
+}
+.tag {
+    font-weight: bold;
+    color: #3992ed;
+}
+.logo{
+    width: 20px;
+}
