@@ -1,5 +1,5 @@
-
-#NCA Project - Test
+<pre>
+#NCA Project - Test 
 ##Follow the instructions to run the project
 A. The website is accessible at https://manjeerin.github.io/nca.github.io/
 B. To run locally on your machine. 
