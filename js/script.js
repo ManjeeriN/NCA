@@ -18,35 +18,35 @@ const getNewsByCollectionId  = (collectionId) => {
 const filterNews = (collectionId = 0,newsList = []) => {
     let filteredList = []
     if( newsList.length > 0 && collectionId > 0 ) {
-        filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId } ) 
-    } 
-    // append these news to html
-    let exclusiveArticles = ``;
-    let mainArticles = ``;
-    let otherArticles = ``;
-    const exclusiveArticleHTML = document.getElementById('exclusive-article');
-    const mainArticleHTML = document.getElementById('main-article');
-    const otherArticleHTML = document.getElementById('other-article');
-    filteredList.forEach(news => {
-        if(news.type == "exclusive"){
-            // append news that are exclusive
-            exclusiveArticles += appendExclusiveArticle(news)
-        } else if(news.type == "main") {
-            // append news that are main
-            mainArticles += appendMainArticle(news)
-        }else{
-            // append other news
-            otherArticles += appendOtherArticles(news)
-        }  
-    });
-    if(exclusiveArticleHTML){
-        exclusiveArticleHTML.innerHTML = exclusiveArticles
-    }
-    if(mainArticleHTML){
-        mainArticleHTML.innerHTML = mainArticles
-    }
-    if(otherArticleHTML){
-        otherArticleHTML.innerHTML = otherArticles
+            filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId } )         
+            // append these news to html
+            let exclusiveArticles = ``;
+            let mainArticles = ``;
+            let otherArticles = ``;
+            const exclusiveArticleHTML = document.getElementById('exclusive-article');
+            const mainArticleHTML = document.getElementById('main-article');
+            const otherArticleHTML = document.getElementById('other-article');
+            filteredList.forEach(news => {
+                if(news.type == "exclusive"){
+                    // append news that are exclusive
+                    exclusiveArticles += appendExclusiveArticle(news)
+                } else if(news.type == "main") {
+                    // append news that are main
+                    mainArticles += appendMainArticle(news)
+                }else{
+                    // append other news
+                    otherArticles += appendOtherArticles(news)
+                }  
+            });
+            if(exclusiveArticleHTML){
+                exclusiveArticleHTML.innerHTML = exclusiveArticles
+            }
+            if(mainArticleHTML){
+                mainArticleHTML.innerHTML = mainArticles
+            }
+            if(otherArticleHTML){
+                otherArticleHTML.innerHTML = otherArticles
+            }
     }
 }
 
