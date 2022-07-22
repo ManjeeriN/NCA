@@ -51,6 +51,7 @@ const filterNews = (collectionId = 0,newsList = []) => {
 }
 
 const appendExclusiveArticle = (news) => {
+    news = checkNull(news)
     return `<article>
     <img src="images/${news.Imageurl}" class = "w-100" alt="${news.Title}">
     <h4>
@@ -68,7 +69,8 @@ const appendExclusiveArticle = (news) => {
 }
 
 const appendMainArticle = (news) => {
-    return `<img src="images/Greg_Inglis_Australia.jpg" class = "w-100" alt="Image">
+    news = checkNull(news)
+    return `<img src="images/${news.Imageurl}" class = "w-100" alt="${news.Title}">
     <h3>
     ${logoImage}
     ${news.Title}</h3>
@@ -82,6 +84,7 @@ const appendMainArticle = (news) => {
 }
 
 const appendOtherArticles = (news) => {
+    news = checkNull(news)
     return `<div class="row">
         <div class="col-md-8 col-sm-12">
             <h5>
@@ -99,6 +102,18 @@ const appendOtherArticles = (news) => {
                 </p>
         </div>
     </div> `
+}
+
+const checkNull = (news) => {
+    return {
+        Title : news.Title?news.Title:'',
+        Imageurl : news.Imageurl?news.Imageurl:'',
+        Intro : news.Intro?news.Intro:'',
+        Published : news.Published?news.Published:'',
+        comment : news.comment?news.comment:'',
+        type:news.type,
+        collectionid:news.collectionid
+    }
 }
   
 getNewsByCollectionId(2);
