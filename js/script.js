@@ -5,7 +5,7 @@ const logoImage = `<img src="images/logo.png" class = "logo" alt="Logo">`
 
 // get all news by collection Id
 const getNewsByCollectionId  = (collectionId) => {
-    fetch(baseUrl+"/api/collection.json",)
+    fetch(localUrl+"/api/collection.json",)
       .then((response) =>  response.json() )
       .then((json) => 
         filterNews(collectionId,json)
@@ -14,7 +14,7 @@ const getNewsByCollectionId  = (collectionId) => {
 
 // filter the news whose collection id is passed only
 const filterNews = (collectionId,newsList) => {
-    // const filteredList = []
+    let filteredList = []
     if(newsList){
         filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId}) 
     } 
