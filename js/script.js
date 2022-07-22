@@ -1,22 +1,24 @@
 
 const baseUrl = "https://manjeerin.github.io/nca.github.io"; // production Url
-const localUrl = "http://localhost/test" // local Url
+const localUrl = "http://localhost/nca" // local Url
 const logoImage = `<img src="images/logo.png" class = "logo" alt="Logo">`
 
 // get all news by collection Id
 const getNewsByCollectionId  = (collectionId) => {
-    fetch(localUrl+"/api/collection.json",)
-      .then((response) =>  response.json() )
-      .then((json) => 
-        filterNews(collectionId,json)
-      ).catch(e => console.log(e));
+    if(collectionId){
+        fetch(localUrl+"/api/collection.json",)
+        .then((response) => response.json())
+        .then((json) => { 
+            if(json) filterNews(collectionId,json) 
+        }).catch(e => console.log(e));
+    }
 }
 
 // filter the news whose collection id is passed only
-const filterNews = (collectionId,newsList) => {
+const filterNews = (collectionId = 0,newsList = []) => {
     let filteredList = []
-    if(newsList){
-        filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId}) 
+    if( newsList.length > 0 && collectionId > 0 ) {
+        filteredList =  newsList.filter((news)=>{ return  news.collectionid == collectionId } ) 
     } 
     // append these news to html
     let exclusiveArticles = ``;
@@ -26,20 +28,26 @@ const filterNews = (collectionId,newsList) => {
     const mainArticleHTML = document.getElementById('main-article');
     const otherArticleHTML = document.getElementById('other-article');
     filteredList.forEach(news => {
-    if(news.type == "exclusive"){
-        // append news that are exclusive
-        exclusiveArticles += appendExclusiveArticle(news)
-    } else if(news.type == "main") {
-        // append news that are main
-        mainArticles += appendMainArticle(news)
-    }else{
-        // append other news
-        otherArticles += appendOtherArticles(news)
-    }  
-   });
-   exclusiveArticleHTML.innerHTML = exclusiveArticles
-   mainArticleHTML.innerHTML = mainArticles
-   otherArticleHTML.innerHTML = otherArticles
+        if(news.type == "exclusive"){
+            // append news that are exclusive
+            exclusiveArticles += appendExclusiveArticle(news)
+        } else if(news.type == "main") {
+            // append news that are main
+            mainArticles += appendMainArticle(news)
+        }else{
+            // append other news
+            otherArticles += appendOtherArticles(news)
+        }  
+    });
+    if(exclusiveArticleHTML){
+        exclusiveArticleHTML.innerHTML = exclusiveArticles
+    }
+    if(mainArticleHTML){
+        mainArticleHTML.innerHTML = mainArticles
+    }
+    if(otherArticleHTML){
+        otherArticleHTML.innerHTML = otherArticles
+    }
 }
 
 const appendExclusiveArticle = (news) => {
