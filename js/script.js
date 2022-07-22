@@ -49,7 +49,7 @@ const filterNews = (collectionId = 0,newsList = []) => {
             }
     }
 }
-
+// html content for exclusive article
 const appendExclusiveArticle = (news) => {
     news = checkNull(news)
     return `<article>
@@ -67,7 +67,7 @@ const appendExclusiveArticle = (news) => {
     </p>
     </article>`
 }
-
+// html content for main article
 const appendMainArticle = (news) => {
     news = checkNull(news)
     return `<img src="images/${news.Imageurl}" class = "w-100" alt="${news.Title}">
@@ -82,7 +82,7 @@ const appendMainArticle = (news) => {
         </p>
     </p> `
 }
-
+// html content for other articles
 const appendOtherArticles = (news) => {
     news = checkNull(news)
     return `<div class="row">
@@ -103,7 +103,7 @@ const appendOtherArticles = (news) => {
         </div>
     </div> `
 }
-
+// if null or undefined, return empty string
 const checkNull = (news) => {
     return {
         Title : news.Title?news.Title:'',
